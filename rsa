@@ -1,0 +1,33 @@
+import math
+import sys
+
+def factorize_file(file):
+    with open(file, 'r') as f:
+        num = int(f.readline().strip())
+        factors = factorize(num)
+        for p, q in factors:
+            print(f"{num}={p}*{q}")
+
+def factorize(num):
+    factors = 
+    smallest_prime_factor = smallest_prime(num)
+    while smallest_prime_factor != num:
+        factors.append((smallest_prime_factor, num // smallest_prime_factor))
+        num = num // smallest_prime_factor
+        smallest_prime_factor = smallest_prime(num)
+    factors.append((num, 1))
+    return factors
+
+def smallest_prime(num):
+    if num % 2 == 0:
+        return 2
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+        if num % i == 0:
+            return i
+    return num
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        exit(1)
+    factorize_file(sys.argv[1]
