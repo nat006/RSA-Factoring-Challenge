@@ -1,39 +1,38 @@
 #!/usr/bin/python3
 
 import sys
-import time
 
-def find_factors(num):
-    for i in range(2, int(num**0.5)+1):
-        if num % i == 0:
-            return (i, num//i)
-    return None
+def factorize(number):
+    factors = 
+    
+    for i in range(2, int(number**0.5) + 1):
+        while number % i == 0:
+            factors.append(i)
+            number = number // i
+    
+    if number > 1:
+        factors.append(number)
+    
+    return factors
+
 
 def main():
     if len(sys.argv) != 2:
         print("Usage: factors <file>")
-        exit()
+        return
     
     input_file = sys.argv
     
-    try:
-        with open(input_file, 'r') as f:
-            lines = f.readlines()
-    except FileNotFoundError:
-        print("File not found")
-        exit()
+    with open(input_file, "r") as file:
+        numbers = file.readlines()
     
-    start_time = time.time()
-    
-    for line in lines:
-        num = int(line.strip())
-        factors = find_factors(num)
-        if factors:
-            print(f"{num}={factors}*{factors[1)
+    for number in numbers:
+        number = int(number.strip())
+        factors = factorize(number)
         
-        if time.time() - start_time > 5:
-            print("Time limit exceeded")
-            exit()
+        result = f"{number}={int(number/factors[}*{factors}"
+        print(result)
+
 
 if __name__ == "__main__":
     main()
